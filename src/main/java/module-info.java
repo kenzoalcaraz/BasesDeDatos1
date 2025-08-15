@@ -5,4 +5,6 @@ module com.example.basesdedatos {
 
     opens com.example.basesdedatos to javafx.fxml;
     exports com.example.basesdedatos;
+    exports Tarea;
+    opens Tarea to javafx.fxml;
 }
