@@ -11,26 +11,29 @@ public class ManejoDeArchivosDeDatos {
         FileReader fr = null;
 
         try (java.io.FileReader fileReader = fr = new FileReader("codigos_postales_hmo.csv")){
-        BufferedReader br = new BufferedReader(fr);
-        String line = null;
 
-        String cpString = null;
-        int contador=1;
-        int lastCP = 0;
+            BufferedReader br = new BufferedReader(fr);
+            String line = null;
 
-        while ( (line = br.readLine()) != null ){
+            String cpString = null;
+            int contador=1;
+            int lastCP= 0;
+            int currentCP = 0;
 
-            cpString = line.substring(0,5);
-            currentCP= Integer.parseInt(cpString);
-            if(lastCP == currentCP){
+            while ( (line = br.readLine()) != null ){
+
+                cpString = line.substring(0,5);
+                currentCP= Integer.parseInt(cpString);
+                if(lastCP == currentCP){
                 contador++;
             }else {
-                System.out.println("%d $d\n", lastCP, contador);
+                System.out.println(lastCP + " " + contador);
                 contador = 1;
+                lastCP = currentCP;
             }
         }
         if( lastCP ==currentCP ){
-            System.out.println("%d $d\n", lastCP, contador);
+            System.out.println(lastCP + " " + contador);
         }
 
     }catch (FileNotFoundException e){
